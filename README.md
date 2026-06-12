@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="icons/chatveil-128.png" alt="ChatVeil icon" width="128" height="128" />
+</p>
+
 # ChatVeil
 
 [English](#english) | [繁體中文](#traditional-chinese) | [简体中文](#simplified-chinese)
