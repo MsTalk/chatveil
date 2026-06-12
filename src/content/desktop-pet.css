@@ -1,0 +1,67 @@
+#wa-desktop-pet-root,
+.wa-desktop-pet-root {
+  --wa-desktop-pet-small: 46px;
+  --wa-desktop-pet-medium: 58px;
+  --wa-desktop-pet-large: 74px;
+  position: fixed;
+  width: var(--wa-desktop-pet-medium);
+  height: var(--wa-desktop-pet-medium);
+  z-index: 2147483646;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 140ms ease;
+  isolation: isolate;
+}
+
+#wa-desktop-pet-root[data-size="small"],
+.wa-desktop-pet-root[data-size="small"] {
+  width: var(--wa-desktop-pet-small);
+  height: var(--wa-desktop-pet-small);
+}
+
+#wa-desktop-pet-root[data-size="large"],
+.wa-desktop-pet-root[data-size="large"] {
+  width: var(--wa-desktop-pet-large);
+  height: var(--wa-desktop-pet-large);
+}
+
+#wa-desktop-pet-root[data-corner="top-left"],
+.wa-desktop-pet-root[data-corner="top-left"] {
+  top: 16px;
+  left: 16px;
+  right: auto;
+  bottom: auto;
+}
+
+#wa-desktop-pet-root[data-corner="top-right"],
+.wa-desktop-pet-root[data-corner="top-right"] {
+  top: 16px;
+  right: 16px;
+  left: auto;
+  bottom: auto;
+}
+
+#wa-desktop-pet-root[data-corner="bottom-left"],
+.wa-desktop-pet-root[data-corner="bottom-left"] {
+  left: 16px;
+  bottom: 16px;
+  right: auto;
+  top: auto;
+}
+
+#wa-desktop-pet-root[data-corner="bottom-right"],
+.wa-desktop-pet-root[data-corner="bottom-right"] {
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  top: auto;
+}
+
+#wa-desktop-pet-root.is-hidden,
+.wa-desktop-pet-root.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}

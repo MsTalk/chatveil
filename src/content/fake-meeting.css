@@ -1,0 +1,94 @@
+.wa-fake-meeting-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.wa-fake-meeting-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.wa-fake-meeting-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #5f6368;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.wa-fake-meeting-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.wa-fake-meeting-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f1f1f;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.wa-fake-meeting-time {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 4px;
+}
+
+.wa-fake-meeting-details {
+  font-size: 13px;
+  color: #80868b;
+  margin-bottom: 20px;
+}
+
+.wa-fake-meeting-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.wa-fake-meeting-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid #dadce0;
+  background: #ffffff;
+  color: #1f1f1f;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.wa-fake-meeting-btn--primary {
+  background: #1a73e8;
+  color: #ffffff;
+  border-color: #1a73e8;
+}
+
+.wa-fake-meeting-card--zoom .wa-fake-meeting-btn--primary {
+  background: #2d8cff;
+  border-color: #2d8cff;
+}
+
+.wa-fake-meeting-card--outlook .wa-fake-meeting-btn--primary {
+  background: #0078d4;
+  border-color: #0078d4;
+}

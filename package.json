@@ -1,0 +1,10 @@
+{
+  "name": "chatveil-extension",
+  "id": "superStan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension for selectively blurring WhatsApp Web content",
+  "scripts": {
+    "test": "node -e \"const { existsSync, readdirSync } = require('node:fs'); const { join } = require('node:path'); const { spawnSync } = require('node:child_process'); const testsDir = 'tests'; const files = existsSync(testsDir) ? readdirSync(testsDir, { withFileTypes: true }).filter((entry) => entry.isFile() && entry.name.endsWith('.test.cjs')).map((entry) => join(testsDir, entry.name)) : []; if (!files.length) { console.error('No test files found matching tests/*.test.cjs'); process.exit(1); } const result = spawnSync(process.execPath, ['--test', ...files], { stdio: 'inherit' }); process.exit(result.status ?? 1);\""
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "manifest_version": 3,
+  "name": "ChatVeil",
+  "version": "0.1.0",
+  "description": "Blur sensitive WhatsApp Web content with per-section controls.",
+  "icons": {
+    "16": "icons/chatveil-16.png",
+    "32": "icons/chatveil-32.png",
+    "48": "icons/chatveil-48.png",
+    "128": "icons/chatveil-128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "tabs", "scripting", "alarms"],
+  "commands": {
+    "toggle-bookmark-bar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+9",
+        "mac": "Command+Shift+9",
+        "windows": "Ctrl+Shift+9"
+      },
+      "description": "Toggle bookmark bar chat"
+    },
+    "temporary-reveal": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+8",
+        "mac": "Command+Shift+8",
+        "windows": "Ctrl+Shift+8"
+      },
+      "description": "Temporarily reveal blurred content"
+    },
+    "toggle-boss-key": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+0",
+        "mac": "Command+Shift+0",
+        "windows": "Ctrl+Shift+0"
+      },
+      "description": "Toggle boss key camouflage overlay"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "ChatVeil",
+    "default_icon": {
+      "16": "icons/chatveil-16.png",
+      "32": "icons/chatveil-32.png",
+      "48": "icons/chatveil-48.png",
+      "128": "icons/chatveil-128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": [
+        "src/shared/settings.js",
+        "src/shared/runtime.js",
+        "src/shared/bookmark-data.js",
+        "src/content/selectors.js",
+        "src/content/filtering.js",
+        "src/content/bookmark-bar.js",
+        "src/content/dashboard-data.js",
+        "src/content/desktop-pet.js",
+        "src/content/boss-key.js",
+        "src/content/fake-meeting.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css",
+        "src/content/bookmark-bar.css",
+        "src/content/desktop-pet.css",
+        "src/content/boss-key.css",
+        "src/content/fake-meeting.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["https://web.whatsapp.com/*"],
+      "js": [
+        "src/shared/settings.js",
+        "src/shared/bookmark-data.js",
+        "src/content/bookmark-bar.js",
+        "src/content/dashboard-data.js",
+        "src/content/desktop-pet.js",
+        "src/content/danmu.js"
+      ],
+      "css": [
+        "src/content/bookmark-bar.css",
+        "src/content/desktop-pet.css",
+        "src/content/danmu.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

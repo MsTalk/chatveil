@@ -1,0 +1,68 @@
+html.wa-blur-ext--hover-enabled .wa-blur-ext--blurred:hover,
+html.wa-blur-ext--hover-enabled .wa-blur-ext--blurred:hover .wa-blur-ext--blurred,
+html.wa-blur-ext--temp-reveal .wa-blur-ext--blurred,
+html.wa-blur-ext--temp-reveal .wa-blur-ext--blurred .wa-blur-ext--blurred,
+html.wa-blur-ext--hold-reveal .wa-blur-ext--blurred,
+html.wa-blur-ext--hold-reveal .wa-blur-ext--blurred .wa-blur-ext--blurred {
+  filter: none !important;
+}
+
+/* Standard blur */
+.wa-blur-ext--blurred {
+  filter: blur(12px) !important;
+  transition: filter 120ms ease;
+}
+
+/* Cinematic blur - scanline */
+.wa-blur-ext--cinematic-scanline {
+  filter: blur(12px) brightness(0.4) saturate(0.2) !important;
+  transition: filter 800ms ease !important;
+}
+
+html.wa-blur-ext--hover-enabled .wa-blur-ext--cinematic-scanline:hover,
+html.wa-blur-ext--temp-reveal .wa-blur-ext--cinematic-scanline,
+html.wa-blur-ext--hold-reveal .wa-blur-ext--cinematic-scanline {
+  filter: blur(0px) brightness(1) saturate(1) !important;
+  transition: filter 600ms ease !important;
+}
+
+/* Cinematic blur - matrix */
+.wa-blur-ext--cinematic-matrix {
+  filter: blur(10px) grayscale(100%) contrast(150%) hue-rotate(90deg) !important;
+  transition: filter 700ms ease !important;
+}
+
+html.wa-blur-ext--hover-enabled .wa-blur-ext--cinematic-matrix:hover,
+html.wa-blur-ext--temp-reveal .wa-blur-ext--cinematic-matrix,
+html.wa-blur-ext--hold-reveal .wa-blur-ext--cinematic-matrix {
+  filter: blur(0px) grayscale(0%) contrast(100%) hue-rotate(0deg) !important;
+  transition: filter 500ms ease !important;
+}
+
+/* Cinematic blur - noise */
+.wa-blur-ext--cinematic-noise {
+  filter: blur(12px) contrast(200%) brightness(0.8) !important;
+  transition: filter 600ms steps(8) !important;
+}
+
+html.wa-blur-ext--hover-enabled .wa-blur-ext--cinematic-noise:hover,
+html.wa-blur-ext--temp-reveal .wa-blur-ext--cinematic-noise,
+html.wa-blur-ext--hold-reveal .wa-blur-ext--cinematic-noise {
+  filter: blur(0px) contrast(100%) brightness(1) !important;
+  transition: filter 400ms ease !important;
+}
+
+/* Local read-receipt indicator hiding */
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-testid="msg-dblcheck"],
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-testid="msg-dblcheck-ack"],
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-testid="msg-check"],
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-icon="dblcheck"],
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-icon="ack"],
+html.wa-blur-ext--read-receipt-protection [data-testid="msg-meta"] [data-icon="check"] {
+  display: none !important;
+}
+
+html.wa-blur-ext--idle-blur {
+  filter: blur(12px) !important;
+  transition: filter 200ms ease;
+}

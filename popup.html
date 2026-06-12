@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="app.title">ChatVeil</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__header">
+        <h1 data-i18n="app.title">ChatVeil</h1>
+        <p data-i18n="app.description">Control which WhatsApp Web regions stay blurred.</p>
+        <label class="field-row popup__language-row" for="language-select">
+          <span data-i18n="language.label">Language</span>
+          <select id="language-select" data-i18n-aria-label="language.label" aria-label="Language"></select>
+        </label>
+      </header>
+
+      <section class="popup__section" data-section-key="bookmarkBar">
+        <button
+          id="section-toggle-bookmarkBar"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="true"
+          aria-controls="section-content-bookmarkBar"
+        >
+          <span data-i18n="section.bookmarkBar">Bookmark Bar Chat</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-bookmarkBar" class="popup__section-content">
+        <p style="margin:0 0 10px;font-size:12px;color:#4f4a42;" data-i18n="bookmark.description">
+          Disguise WhatsApp conversations as a browser bookmark bar on every page.
+        </p>
+        <label class="toggle-row" for="bookmark-bar-toggle">
+          <span data-i18n="bookmark.enabled">Enable bookmark bar chat</span>
+          <input id="bookmark-bar-toggle" type="checkbox" />
+        </label>
+        <label class="toggle-row" for="keep-whatsapp-alive-toggle">
+          <span data-i18n="bookmark.keepAlive">Keep WhatsApp Web alive</span>
+          <input id="keep-whatsapp-alive-toggle" type="checkbox" />
+        </label>
+        <p style="margin:6px 0 0;font-size:11px;color:#7a7368;" data-i18n="bookmark.keepAliveNote">
+          Opens a hidden WhatsApp Web tab so messages sync in the background.
+        </p>
+        <label class="field-row" for="bookmark-bar-theme" style="margin-top:8px;">
+          <span data-i18n="field.theme">Theme</span>
+          <select id="bookmark-bar-theme"></select>
+        </label>
+        <label class="toggle-row" for="pinned-contacts" style="align-items:flex-start;margin-top:8px;">
+          <span data-i18n="bookmark.alwaysShowContacts">Always show contacts</span>
+        </label>
+        <textarea
+          id="pinned-contacts"
+          placeholder="Enter names, one per line"
+          data-i18n-placeholder="bookmark.pinnedContactsPlaceholder"
+          style="width:100%;min-height:60px;margin-top:4px;padding:6px 8px;font-size:12px;border:1px solid #dadce0;border-radius:6px;resize:vertical;font-family:inherit;"
+        ></textarea>
+        <p style="margin:4px 0 0;font-size:11px;color:#7a7368;" data-i18n="bookmark.pinnedContactsNote">
+          These names will always appear in the bookmark bar.
+        </p>
+        <label class="toggle-row" for="contact-aliases" style="align-items:flex-start;margin-top:8px;">
+          <span data-i18n="bookmark.aliases">Contact aliases</span>
+        </label>
+        <textarea
+          id="contact-aliases"
+          placeholder="Alice => Client A"
+          data-i18n-placeholder="bookmark.aliasesPlaceholder"
+          style="width:100%;min-height:58px;margin-top:4px;padding:6px 8px;font-size:12px;border:1px solid #dadce0;border-radius:6px;resize:vertical;font-family:inherit;"
+        ></textarea>
+        <p style="margin:4px 0 0;font-size:11px;color:#7a7368;" data-i18n="bookmark.aliasesNote">
+          Replace chat names in the bookmark bar without changing the real conversation.
+        </p>
+        <label class="toggle-row" for="pinned-contact-groups" style="align-items:flex-start;margin-top:8px;">
+          <span data-i18n="bookmark.groups">Contact groups</span>
+        </label>
+        <textarea
+          id="pinned-contact-groups"
+          placeholder="Work: Alice, Bob"
+          data-i18n-placeholder="bookmark.groupsPlaceholder"
+          style="width:100%;min-height:58px;margin-top:4px;padding:6px 8px;font-size:12px;border:1px solid #dadce0;border-radius:6px;resize:vertical;font-family:inherit;"
+        ></textarea>
+        <p style="margin:4px 0 0;font-size:11px;color:#7a7368;" data-i18n="bookmark.groupsNote">
+          Group chats into visible clusters inside the bookmark bar.
+        </p>
+        <label class="toggle-row" for="bookmark-bar-color" style="align-items:center;margin-top:10px;">
+          <span data-i18n="bookmark.barColor">Bar color</span>
+          <input id="bookmark-bar-color" type="color" value="#f1f3f4" style="width:40px;height:24px;padding:0;border:none;cursor:pointer;" />
+        </label>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="privacyBlur">
+        <button
+          id="section-toggle-privacyBlur"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="true"
+          aria-controls="section-content-privacyBlur"
+        >
+          <span data-i18n="section.privacyBlur">Privacy Blur</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-privacyBlur" class="popup__section-content">
+        <label class="toggle-row" for="enabled-toggle">
+          <span data-i18n="toggle.enabled">Enable privacy blur</span>
+          <input id="enabled-toggle" type="checkbox" />
+        </label>
+
+        <label class="toggle-row" for="hover-toggle">
+          <span data-i18n="toggle.hover">Reveal on hover</span>
+          <input id="hover-toggle" type="checkbox" />
+        </label>
+
+        <label class="toggle-row" for="hold-reveal-toggle">
+          <span data-i18n="toggle.holdAlt">Hold Alt to reveal</span>
+          <input id="hold-reveal-toggle" type="checkbox" />
+        </label>
+
+        <label class="toggle-row" for="idle-blur-toggle">
+          <span data-i18n="toggle.idleBlur">Blur when idle or away</span>
+          <input id="idle-blur-toggle" type="checkbox" />
+        </label>
+
+        <div id="idle-timeout-wrapper" class="timeout-row" style="display: none;">
+          <span data-i18n="idle.blurAfter">Blur after</span>
+          <select id="idle-timeout">
+            <option value="5000" data-i18n="idle.fiveSeconds">5 seconds</option>
+            <option value="10000" data-i18n="idle.tenSeconds">10 seconds</option>
+            <option value="30000" data-i18n="idle.thirtySeconds" selected>30 seconds</option>
+            <option value="60000" data-i18n="idle.oneMinute">1 minute</option>
+          </select>
+        </div>
+        <h3 class="popup__subheading" data-i18n="section.blurTargets">Blur targets</h3>
+        <div id="targets-root" class="targets-list"></div>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="quickModes">
+        <button
+          id="section-toggle-quickModes"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-quickModes"
+        >
+          <span data-i18n="section.quickModes">Quick modes</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-quickModes" class="popup__section-content" hidden>
+          <label class="field-row" for="preset-select">
+            <span data-i18n="field.preset">Preset</span>
+            <select id="preset-select"></select>
+          </label>
+          <button
+            id="emergency-hide-button"
+            type="button"
+            class="action-button action-button--danger"
+            data-i18n="action.hideEverythingForSeconds"
+          >
+            Hide everything for 5 seconds
+          </button>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="cinematicBlur">
+        <button
+          id="section-toggle-cinematicBlur"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-cinematicBlur"
+        >
+          <span data-i18n="section.cinematicBlur">Cinematic Blur</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-cinematicBlur" class="popup__section-content" hidden>
+          <label class="toggle-row" for="cinematic-blur-toggle">
+            <span data-i18n="cinematic.enabled">Enable cinematic blur</span>
+            <input id="cinematic-blur-toggle" type="checkbox" />
+          </label>
+          <label class="field-row" for="cinematic-blur-style" style="margin-top:8px;">
+            <span data-i18n="field.style">Style</span>
+            <select id="cinematic-blur-style">
+              <option value="scanline" data-i18n="cinematic.scanline">Scanline</option>
+              <option value="matrix" data-i18n="cinematic.matrix">Matrix</option>
+              <option value="noise" data-i18n="cinematic.noise">Noise</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="bossKey">
+        <button
+          id="section-toggle-bossKey"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-bossKey"
+        >
+          <span data-i18n="section.bossKey">Boss Key</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-bossKey" class="popup__section-content" hidden>
+          <label class="toggle-row" for="boss-key-toggle">
+            <span data-i18n="boss.enabled">Enable boss key</span>
+            <input id="boss-key-toggle" type="checkbox" />
+          </label>
+          <label class="field-row" for="boss-key-theme" style="margin-top:8px;">
+            <span data-i18n="field.theme">Theme</span>
+            <select id="boss-key-theme">
+              <option value="spreadsheet" data-i18n="boss.spreadsheet">Spreadsheet</option>
+              <option value="vscode" data-i18n="boss.vscode">VS Code</option>
+              <option value="terminal" data-i18n="boss.terminal">Terminal</option>
+            </select>
+          </label>
+          <button id="boss-key-test-button" type="button" class="action-button" style="margin-top:8px;" data-i18n="action.testBossKey">
+            Test boss key
+          </button>
+        </div>
+      </section>
+
+      <section class="popup__section popup__section--compact" data-section-key="cornerCat">
+        <button
+          id="section-toggle-cornerCat"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-cornerCat"
+        >
+          <span data-i18n="section.cornerCat">Corner Cat</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-cornerCat" class="popup__section-content" hidden>
+          <label class="toggle-row" for="desktop-pet-enabled-toggle">
+            <span data-i18n="desktopPet.enabled">Enable Corner Cat</span>
+            <input id="desktop-pet-enabled-toggle" type="checkbox" />
+          </label>
+          <label class="field-row compact-field" for="desktop-pet-mode-select">
+            <span data-i18n="field.mode">Mode</span>
+            <select id="desktop-pet-mode-select">
+              <option value="quiet" data-i18n="desktopPet.quiet">Quiet</option>
+              <option value="reactive" data-i18n="desktopPet.reactive">Reactive</option>
+              <option value="interactive" data-i18n="desktopPet.interactive">Interactive</option>
+              <option value="hybrid" data-i18n="desktopPet.hybrid">Hybrid</option>
+            </select>
+          </label>
+          <label class="field-row compact-field" for="desktop-pet-corner-select">
+            <span data-i18n="field.corner">Corner</span>
+            <select id="desktop-pet-corner-select">
+              <option value="bottom-right" data-i18n="desktopPet.bottomRight">Bottom Right</option>
+              <option value="bottom-left" data-i18n="desktopPet.bottomLeft">Bottom Left</option>
+              <option value="top-right" data-i18n="desktopPet.topRight">Top Right</option>
+              <option value="top-left" data-i18n="desktopPet.topLeft">Top Left</option>
+            </select>
+          </label>
+          <label class="field-row compact-field" for="desktop-pet-size-select">
+            <span data-i18n="field.size">Size</span>
+            <select id="desktop-pet-size-select">
+              <option value="small" data-i18n="desktopPet.small">Small</option>
+              <option value="medium" data-i18n="desktopPet.medium">Medium</option>
+              <option value="large" data-i18n="desktopPet.large">Large</option>
+            </select>
+          </label>
+          <label class="field-row compact-field" for="desktop-pet-color-input">
+            <span data-i18n="field.color">Color</span>
+            <input id="desktop-pet-color-input" class="compact-color-input" type="color" value="#ffd782" />
+          </label>
+          <label class="toggle-row" for="desktop-pet-hidden-toggle">
+            <span data-i18n="desktopPet.hidden">Hidden state by default</span>
+            <input id="desktop-pet-hidden-toggle" type="checkbox" />
+          </label>
+          <button id="desktop-pet-preview-button" type="button" class="action-button action-button--compact" data-i18n="action.preview">
+            Preview
+          </button>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="receiptPrivacy">
+        <button
+          id="section-toggle-receiptPrivacy"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-receiptPrivacy"
+        >
+          <span data-i18n="section.receiptPrivacy">Receipt Indicator Privacy</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-receiptPrivacy" class="popup__section-content" hidden>
+          <label class="toggle-row" for="read-receipt-protection-toggle">
+            <span data-i18n="receipt.hideOutgoing">Hide outgoing receipt icons locally</span>
+            <input id="read-receipt-protection-toggle" type="checkbox" />
+          </label>
+          <p class="feature-note" data-i18n="receipt.note">
+            This only hides the icons on your screen. It does not stop WhatsApp from sending read receipts.
+          </p>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="dashboard">
+        <button
+          id="section-toggle-dashboard"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-dashboard"
+        >
+          <span data-i18n="section.dashboard">Dashboard</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-dashboard" class="popup__section-content" hidden>
+          <label class="toggle-row" for="dashboard-toggle">
+            <span data-i18n="dashboard.enabled">Enable message dashboard</span>
+            <input id="dashboard-toggle" type="checkbox" />
+          </label>
+          <div id="dashboard-summary" class="dashboard-summary">
+            <div><strong id="dashboard-total-messages">0</strong><span data-i18n="dashboard.cachedMessages">Cached messages</span></div>
+            <div><strong id="dashboard-active-chats">0</strong><span data-i18n="dashboard.activeChats">Active chats</span></div>
+            <div><strong id="dashboard-top-contact">-</strong><span data-i18n="dashboard.topContact">Top contact</span></div>
+            <div><strong id="dashboard-top-emoji">-</strong><span data-i18n="dashboard.topEmoji">Top emoji</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="danmu">
+        <button
+          id="section-toggle-danmu"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-danmu"
+        >
+          <span data-i18n="section.danmu">Danmu Mode</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-danmu" class="popup__section-content" hidden>
+          <label class="toggle-row" for="danmu-mode-toggle">
+            <span data-i18n="danmu.enabled">Enable danmu mode</span>
+            <input id="danmu-mode-toggle" type="checkbox" />
+          </label>
+          <label class="field-row" for="danmu-speed" style="margin-top:8px;">
+            <span data-i18n="field.speed">Speed</span>
+            <select id="danmu-speed">
+              <option value="slow" data-i18n="danmu.slow">Slow</option>
+              <option value="normal" data-i18n="danmu.normal" selected>Normal</option>
+              <option value="fast" data-i18n="danmu.fast">Fast</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="morse">
+        <button
+          id="section-toggle-morse"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-morse"
+        >
+          <span data-i18n="section.morse">Morse Notifications</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-morse" class="popup__section-content" hidden>
+          <label class="toggle-row" for="morse-notifications-toggle">
+            <span data-i18n="morse.enabled">Enable morse notifications</span>
+            <input id="morse-notifications-toggle" type="checkbox" />
+          </label>
+          <label class="field-row" for="morse-contact" style="margin-top:8px;">
+            <span data-i18n="morse.contactFilter">Contact filter</span>
+          </label>
+          <input
+            id="morse-contact"
+            type="text"
+            placeholder="Enter contact name"
+            data-i18n-placeholder="morse.contactPlaceholder"
+            style="width:100%;margin-top:4px;padding:6px 8px;font-size:12px;border:1px solid #dadce0;border-radius:6px;font-family:inherit;"
+          />
+          <button id="morse-test-button" type="button" class="action-button" style="margin-top:8px;" data-i18n="action.testMorse">
+            Test morse
+          </button>
+        </div>
+      </section>
+
+      <section class="popup__section" data-section-key="fakeMeeting">
+        <button
+          id="section-toggle-fakeMeeting"
+          class="popup__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="section-content-fakeMeeting"
+        >
+          <span data-i18n="section.fakeMeeting">Fake Meeting</span>
+          <span class="popup__section-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="section-content-fakeMeeting" class="popup__section-content" hidden>
+          <label class="toggle-row" for="fake-meeting-toggle">
+            <span data-i18n="fakeMeeting.enabled">Enable fake meeting overlay</span>
+            <input id="fake-meeting-toggle" type="checkbox" />
+          </label>
+          <label class="field-row" for="fake-meeting-template" style="margin-top:8px;">
+            <span data-i18n="field.template">Template</span>
+            <select id="fake-meeting-template">
+              <option value="calendar" data-i18n="fakeMeeting.calendar">Google Calendar</option>
+              <option value="zoom" data-i18n="fakeMeeting.zoom">Zoom</option>
+              <option value="outlook" data-i18n="fakeMeeting.outlook">Outlook</option>
+            </select>
+          </label>
+          <button id="fake-meeting-generate-button" type="button" class="action-button" style="margin-top:8px;" data-i18n="action.generateFakeMeeting">
+            Generate fake meeting
+          </button>
+        </div>
+      </section>
+
+      <div class="popup__actions">
+        <button id="restore-button" type="button" data-i18n="action.restore">Restore last saved settings</button>
+        <label class="duration-row" for="temporary-reveal-seconds">
+          <span data-i18n="temporary.reveal">Temporary reveal</span>
+          <input id="temporary-reveal-seconds" type="number" min="1" step="1" />
+          <span data-i18n="temporary.seconds">seconds</span>
+        </label>
+        <button id="show-all-button" type="button" data-i18n="action.showAllForSeconds">Show everything</button>
+        <p style="margin:0;font-size:11px;color:#7a7368;" data-i18n="shortcut.note">
+          Hotkeys can be changed in Chrome's extension shortcuts page.
+        </p>
+      </div>
+    </main>
+
+    <script src="src/shared/settings.js"></script>
+    <script src="src/shared/i18n.js"></script>
+    <script src="src/shared/runtime.js"></script>
+    <script src="src/content/selectors.js"></script>
+    <script src="src/content/dashboard-data.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

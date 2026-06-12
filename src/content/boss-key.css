@@ -1,0 +1,747 @@
+.wa-boss-key-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  text-align: left;
+}
+
+.wa-boss-key-overlay *,
+.wa-boss-key-overlay *::before,
+.wa-boss-key-overlay *::after {
+  box-sizing: border-box;
+}
+
+.wa-boss-workspace {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  min-width: 720px;
+}
+
+.wa-boss-main {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.wa-boss-key-overlay button,
+.wa-boss-key-overlay input,
+.wa-boss-key-overlay select {
+  font: inherit;
+}
+
+/* Spreadsheet */
+.wa-boss-key-overlay--spreadsheet {
+  color: #202124;
+  background: #fff;
+}
+
+.wa-boss-sheet-app {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wa-boss-sheet-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 16px;
+  background: #fff;
+}
+
+.wa-boss-sheet-logo {
+  display: grid;
+  width: 36px;
+  height: 40px;
+  place-items: center;
+  color: #fff;
+  background: #0f9d58;
+  border-radius: 3px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.wa-boss-sheet-titlebar strong,
+.wa-boss-sheet-titlebar span {
+  display: block;
+}
+
+.wa-boss-sheet-titlebar strong {
+  margin-bottom: 3px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.wa-boss-sheet-titlebar span {
+  color: #5f6368;
+  font-size: 11px;
+}
+
+.wa-boss-sheet-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.wa-boss-sheet-actions button {
+  padding: 9px 20px;
+  color: #fff;
+  background: #0b57d0;
+  border: 0;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.wa-boss-sheet-actions .wa-boss-user {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #fff;
+  background: #7b1fa2;
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.wa-boss-sheet-menu {
+  word-spacing: 17px;
+  padding: 3px 66px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #3c4043;
+}
+
+.wa-boss-sheet-tools {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  min-height: 40px;
+  margin: 0 10px;
+  padding: 0 12px;
+  background: #edf4ef;
+  border-radius: 20px;
+  color: #3c4043;
+}
+
+.wa-boss-formula {
+  display: grid;
+  grid-template-columns: 70px 35px 1fr;
+  min-height: 31px;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.wa-boss-formula span,
+.wa-boss-formula b {
+  padding: 6px 10px;
+  border-right: 1px solid #dadce0;
+  font-weight: 400;
+}
+
+.wa-boss-formula b {
+  color: #5f6368;
+  font-style: italic;
+}
+
+.wa-boss-sheet-grid {
+  flex: 1;
+  overflow: hidden;
+  background: #fff;
+}
+
+.wa-boss-sheet-row {
+  display: grid;
+  grid-template-columns: 42px 1.35fr 1fr repeat(6, 1fr);
+  min-width: 980px;
+}
+
+.wa-boss-sheet-cell {
+  min-width: 0;
+  height: 25px;
+  padding: 4px 7px;
+  overflow: hidden;
+  border-right: 1px solid #e2e3e5;
+  border-bottom: 1px solid #e2e3e5;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.wa-boss-sheet-row--head .wa-boss-sheet-cell,
+.wa-boss-sheet-index {
+  color: #5f6368;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.wa-boss-sheet-row:nth-child(2) .wa-boss-sheet-cell:not(.wa-boss-sheet-index) {
+  color: #fff;
+  background: #188038;
+  font-weight: 600;
+}
+
+.wa-boss-sheet-status {
+  color: #137333;
+}
+
+.wa-boss-sheet-tabs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 38px;
+  padding: 0 12px;
+  background: #f8f9fa;
+  border-top: 1px solid #dadce0;
+}
+
+.wa-boss-sheet-tabs button,
+.wa-boss-sheet-tabs span {
+  padding: 7px 14px;
+  border: 0;
+  color: #5f6368;
+  background: transparent;
+}
+
+.wa-boss-sheet-tabs .is-active {
+  color: #137333;
+  border-bottom: 3px solid #137333;
+  font-weight: 600;
+}
+
+/* VS Code */
+.wa-boss-key-overlay--vscode {
+  color: #cccccc;
+  background: #181818;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.wa-boss-code-app {
+  display: flex;
+  min-height: 0;
+  background: #1f1f1f;
+}
+
+.wa-boss-activity {
+  display: flex;
+  flex: 0 0 48px;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 0;
+  color: #858585;
+  background: #181818;
+  border-right: 1px solid #2b2b2b;
+  font-size: 24px;
+}
+
+.wa-boss-activity .is-active {
+  color: #fff;
+  border-left: 2px solid #007acc;
+}
+
+.wa-boss-activity-bottom {
+  margin-top: auto;
+}
+
+.wa-boss-explorer {
+  flex: 0 0 230px;
+  background: #181818;
+  border-right: 1px solid #2b2b2b;
+  color: #c8c8c8;
+}
+
+.wa-boss-explorer h3 {
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.wa-boss-project,
+.wa-boss-tree {
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.wa-boss-project {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.wa-boss-tree.indent {
+  padding-left: 30px;
+}
+
+.wa-boss-tree.active {
+  color: #fff;
+  background: #37373d;
+}
+
+.wa-boss-editor-wrap {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.wa-boss-code-tabs {
+  display: flex;
+  height: 36px;
+  background: #181818;
+}
+
+.wa-boss-code-tabs span {
+  min-width: 130px;
+  padding: 10px 14px;
+  color: #969696;
+  background: #181818;
+  border-right: 1px solid #2b2b2b;
+}
+
+.wa-boss-code-tabs .active {
+  color: #fff;
+  background: #1f1f1f;
+  border-top: 1px solid #007acc;
+}
+
+.wa-boss-breadcrumb {
+  height: 28px;
+  padding: 6px 16px;
+  color: #9d9d9d;
+}
+
+.wa-boss-editor {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: 8px 90px 8px 0;
+  overflow: hidden;
+  font-family: Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.wa-boss-code-line {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+}
+
+.wa-boss-code-line > span {
+  padding-right: 18px;
+  color: #6e7681;
+  text-align: right;
+  user-select: none;
+}
+
+.wa-boss-code-line code {
+  color: #d4d4d4;
+  white-space: pre;
+}
+
+.wa-boss-code-line .kw {
+  color: #c586c0;
+}
+
+.wa-boss-code-line .str {
+  color: #ce9178;
+}
+
+.wa-boss-code-line .fn {
+  color: #dcdcaa;
+}
+
+.wa-boss-minimap {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  width: 66px;
+  height: 150px;
+  opacity: 0.45;
+  background: repeating-linear-gradient(#637777 0 2px, transparent 2px 5px);
+}
+
+.wa-boss-problems {
+  height: 82px;
+  padding: 0 16px;
+  border-top: 1px solid #353535;
+}
+
+.wa-boss-problem-tabs {
+  display: flex;
+  gap: 25px;
+  padding-top: 9px;
+  font-size: 11px;
+}
+
+.wa-boss-problems p {
+  color: #8fbc8f;
+}
+
+.wa-boss-code-status {
+  display: flex;
+  gap: 18px;
+  height: 22px;
+  padding: 3px 10px;
+  color: #fff;
+  background: #007acc;
+  font-size: 12px;
+}
+
+.wa-boss-code-status .push {
+  margin-left: auto;
+}
+
+/* Terminal */
+.wa-boss-key-overlay--terminal {
+  color: #d7dae0;
+  background: #0d1117;
+  font-family: Menlo, Monaco, Consolas, monospace;
+}
+
+.wa-boss-terminal-app {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  grid-template-rows: 38px 31px 1fr;
+  overflow: hidden;
+  background: #11161d;
+}
+
+.wa-boss-terminal-top {
+  display: flex;
+  grid-column: 1 / 3;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  color: #b7bdc8;
+  background: #242a33;
+}
+
+.wa-boss-terminal-top > span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.wa-boss-terminal-top .red {
+  background: #ff5f57;
+}
+
+.wa-boss-terminal-top .yellow {
+  background: #febc2e;
+}
+
+.wa-boss-terminal-top .green {
+  background: #28c840;
+}
+
+.wa-boss-terminal-top b {
+  margin: auto;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.wa-boss-terminal-top button {
+  color: #c9d1d9;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+}
+
+.wa-boss-terminal-tabs {
+  display: flex;
+  grid-column: 1 / 3;
+  gap: 1px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+}
+
+.wa-boss-terminal-tabs span {
+  min-width: 150px;
+  padding: 7px 14px;
+  color: #7d8590;
+  background: #161b22;
+}
+
+.wa-boss-terminal-tabs .active {
+  color: #e6edf3;
+  border-top: 2px solid #2f81f7;
+}
+
+.wa-boss-terminal-screen {
+  padding: 18px 24px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.wa-boss-terminal-banner {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  color: #58a6ff;
+  border-bottom: 1px dashed #30363d;
+  font-size: 17px;
+}
+
+.wa-boss-terminal-banner small {
+  margin-left: 12px;
+  color: #7d8590;
+}
+
+.wa-boss-terminal-screen .prompt {
+  margin-top: 5px;
+  color: #f0f6fc;
+}
+
+.wa-boss-terminal-screen .muted {
+  color: #8b949e;
+}
+
+.wa-boss-terminal-screen .ok {
+  color: #3fb950;
+}
+
+.wa-boss-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 15px;
+  vertical-align: -3px;
+  background: #d7dae0;
+}
+
+.wa-boss-terminal-monitor {
+  padding: 16px;
+  background: #0d1117;
+  border-left: 1px solid #30363d;
+}
+
+.wa-boss-terminal-monitor h3 {
+  margin: 8px 0 10px;
+  color: #7d8590;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+
+.wa-boss-terminal-monitor div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #21262d;
+}
+
+.wa-boss-terminal-monitor b {
+  color: #3fb950;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.wa-boss-terminal-monitor em {
+  color: #d29922;
+  font-style: normal;
+}
+
+.wa-boss-terminal-monitor p {
+  color: #8b949e;
+}
+
+/* Shared bottom communications panel */
+.wa-boss-comms {
+  display: grid;
+  flex: 0 0 238px;
+  grid-template-rows: 38px minmax(0, 1fr) 45px;
+  min-height: 190px;
+  max-height: 32vh;
+  border-top: 1px solid #c7c7c7;
+  background: #f8f9fa;
+  color: #252525;
+  box-shadow: 0 -5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.wa-boss-comms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #dfe1e5;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
+
+.wa-boss-comms-header > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.wa-boss-comms-dot {
+  width: 7px;
+  height: 7px;
+  background: #16a34a;
+  border-radius: 50%;
+}
+
+.wa-boss-comms-header select {
+  width: min(260px, 35vw);
+  padding: 5px 28px 5px 9px;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #c6c9ce;
+  border-radius: 4px;
+  outline: none;
+}
+
+.wa-boss-comms-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 10px 16px;
+  overflow: auto;
+}
+
+.wa-boss-message {
+  width: fit-content;
+  max-width: min(720px, 72vw);
+  padding: 7px 10px;
+  background: #fff;
+  border: 1px solid #e0e2e5;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.wa-boss-message.is-outgoing {
+  align-self: flex-end;
+  background: #e8f2ff;
+  border-color: #c9def8;
+}
+
+.wa-boss-message > div {
+  display: flex;
+  gap: 10px;
+  color: #4f5660;
+  font-size: 10px;
+}
+
+.wa-boss-message > div span {
+  color: #8b929c;
+}
+
+.wa-boss-message p {
+  margin: 3px 0 0;
+  color: #202124;
+  line-height: 1.35;
+  white-space: pre-wrap;
+}
+
+.wa-boss-comms-empty {
+  margin: auto;
+  color: #777f89;
+}
+
+.wa-boss-comms-compose {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 70px;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-top: 1px solid #dfe1e5;
+  background: #fff;
+}
+
+.wa-boss-compose-prefix {
+  color: #6b7280;
+  font-size: 20px;
+  text-align: center;
+}
+
+.wa-boss-comms-compose input {
+  width: 100%;
+  height: 31px;
+  padding: 0 10px;
+  color: #202124;
+  background: #fff;
+  border: 1px solid #b8bdc5;
+  border-radius: 4px;
+  outline: none;
+}
+
+.wa-boss-comms-compose input:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 1px #1a73e8;
+}
+
+.wa-boss-comms-compose button {
+  height: 31px;
+  color: #fff;
+  background: #1a73e8;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.wa-boss-comms-compose button:disabled,
+.wa-boss-comms-compose input:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-comms,
+.wa-boss-key-overlay--terminal .wa-boss-comms {
+  color: #d4d4d4;
+  background: #181818;
+  border-top-color: #3a3a3a;
+  box-shadow: none;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-comms-header,
+.wa-boss-key-overlay--terminal .wa-boss-comms-header,
+.wa-boss-key-overlay--vscode .wa-boss-comms-compose,
+.wa-boss-key-overlay--terminal .wa-boss-comms-compose {
+  background: #181818;
+  border-color: #343434;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-comms-header select,
+.wa-boss-key-overlay--terminal .wa-boss-comms-header select,
+.wa-boss-key-overlay--vscode .wa-boss-comms-compose input,
+.wa-boss-key-overlay--terminal .wa-boss-comms-compose input {
+  color: #ddd;
+  background: #252526;
+  border-color: #4a4a4a;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-message,
+.wa-boss-key-overlay--terminal .wa-boss-message {
+  color: #ddd;
+  background: #242424;
+  border-color: #3b3b3b;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-message.is-outgoing,
+.wa-boss-key-overlay--terminal .wa-boss-message.is-outgoing {
+  background: #143a52;
+  border-color: #24577a;
+}
+
+.wa-boss-key-overlay--vscode .wa-boss-message p,
+.wa-boss-key-overlay--terminal .wa-boss-message p {
+  color: #e1e1e1;
+}
+
+@media (max-height: 700px) {
+  .wa-boss-comms {
+    flex-basis: 190px;
+  }
+
+  .wa-boss-sheet-cell {
+    height: 22px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .wa-boss-problems {
+    display: none;
+  }
+}

@@ -1,0 +1,490 @@
+/* Bookmark Bar */
+.wa-bookmark-bar {
+  --wa-bookmark-bar-bg: #f1f3f4;
+  --wa-bookmark-bar-border: #dadce0;
+  --wa-bookmark-bar-text: #3c4043;
+  --wa-bookmark-bar-hover: #dadce0;
+  --wa-bookmark-bar-active: #c6cacf;
+  --wa-bookmark-bar-label: #5f6368;
+  --wa-bookmark-bar-accent: #00a884;
+  --wa-bookmark-bar-panel-bg: #ffffff;
+  --wa-bookmark-bar-panel-alt: #f8f9fa;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: var(--wa-bookmark-bar-bg);
+  border-bottom: 1px solid var(--wa-bookmark-bar-border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 2px;
+  z-index: 999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.wa-bookmark-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.wa-bookmark-bar[data-theme="sunset"] {
+  --wa-bookmark-bar-bg: #fff2e4;
+  --wa-bookmark-bar-border: #f0c9a6;
+  --wa-bookmark-bar-text: #5a402e;
+  --wa-bookmark-bar-hover: #f7d7b6;
+  --wa-bookmark-bar-active: #efc08d;
+  --wa-bookmark-bar-label: #8a5a37;
+  --wa-bookmark-bar-panel-alt: #fff8f0;
+}
+
+.wa-bookmark-bar[data-theme="midnight"] {
+  --wa-bookmark-bar-bg: #1f2430;
+  --wa-bookmark-bar-border: #394155;
+  --wa-bookmark-bar-text: #e7ebf4;
+  --wa-bookmark-bar-hover: #2d3444;
+  --wa-bookmark-bar-active: #384255;
+  --wa-bookmark-bar-label: #9da8bd;
+  --wa-bookmark-bar-panel-alt: #262c3a;
+  --wa-bookmark-bar-accent: #78e7ff;
+}
+
+.wa-bookmark-bar[data-theme="paper"] {
+  --wa-bookmark-bar-bg: #faf7f0;
+  --wa-bookmark-bar-border: #e4dccb;
+  --wa-bookmark-bar-text: #4a4338;
+  --wa-bookmark-bar-hover: #e8dfcf;
+  --wa-bookmark-bar-active: #d8ccb5;
+  --wa-bookmark-bar-label: #7a6c56;
+  --wa-bookmark-bar-panel-alt: #f7f2ea;
+}
+
+.wa-bookmark-bar__group-label {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--wa-bookmark-bar-label);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: 6px;
+}
+
+/* Bookmark item */
+.wa-bookmark-bar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--wa-bookmark-bar-text);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 80ms ease;
+  user-select: none;
+}
+
+.wa-bookmark-bar__item:hover {
+  background: var(--wa-bookmark-bar-hover);
+}
+
+.wa-bookmark-bar__item:active {
+  background: var(--wa-bookmark-bar-active);
+}
+
+/* Avatar */
+.wa-bookmark-bar__avatar {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.wa-bookmark-bar__avatar--placeholder {
+  background: linear-gradient(135deg, #00a884, #008f6f);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Text */
+.wa-bookmark-bar__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wa-bookmark-bar__unread-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--wa-bookmark-bar-accent);
+  box-shadow: 0 0 0 2px var(--wa-bookmark-bar-bg);
+}
+
+/* Panel */
+.wa-bookmark-bar__panel {
+  position: fixed;
+  top: 32px;
+  width: 340px;
+  max-height: 420px;
+  background: var(--wa-bookmark-bar-panel-bg);
+  border: 1px solid var(--wa-bookmark-bar-border);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 999999;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wa-bookmark-bar__panel--active {
+  display: flex;
+}
+
+/* Panel header */
+.wa-bookmark-bar__panel-header {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--wa-bookmark-bar-border);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--wa-bookmark-bar-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--wa-bookmark-bar-panel-alt);
+  flex-shrink: 0;
+}
+
+.wa-bookmark-bar__panel-title-group {
+  min-width: 0;
+}
+
+.wa-bookmark-bar__panel-status {
+  font-size: 11px;
+  color: var(--wa-bookmark-bar-label);
+  font-weight: 400;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+/* Close button */
+.wa-bookmark-bar__close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  color: #5f6368;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.wa-bookmark-bar__close-btn:hover {
+  background: var(--wa-bookmark-bar-hover);
+}
+
+/* Messages area */
+.wa-bookmark-bar__panel-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 12px;
+  max-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--wa-bookmark-bar-panel-alt);
+}
+
+/* Message bubble */
+.wa-bookmark-bar__message {
+  padding: 7px 11px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  max-width: 88%;
+  word-break: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.wa-bookmark-bar__message-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wa-bookmark-bar__message-text {
+  white-space: pre-wrap;
+}
+
+.wa-bookmark-bar__message-media-asset {
+  display: block;
+  max-width: 240px;
+  max-height: 240px;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.wa-bookmark-bar__message-media-asset[data-message-kind="sticker"] {
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.wa-bookmark-bar__message-media-asset[data-message-kind="video"],
+.wa-bookmark-bar__message-media-asset[data-message-kind="audio"] {
+  max-width: 260px;
+}
+
+.wa-bookmark-bar__message-media-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  color: #5f6368;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+.wa-bookmark-bar__message--incoming {
+  align-self: flex-start;
+  background: #fff;
+  color: #303030;
+  border-bottom-left-radius: 2px;
+}
+
+.wa-bookmark-bar__message--outgoing {
+  align-self: flex-end;
+  background: #d9fdd3;
+  color: #303030;
+  border-bottom-right-radius: 2px;
+}
+
+.wa-bookmark-bar__message-sender {
+  font-size: 10.5px;
+  color: var(--wa-bookmark-bar-accent);
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+/* Input area */
+.wa-bookmark-bar__panel-input-area {
+  position: relative;
+  padding: 8px 12px;
+  border-top: 1px solid var(--wa-bookmark-bar-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  background: var(--wa-bookmark-bar-panel-alt);
+  flex-shrink: 0;
+}
+
+.wa-bookmark-bar__panel-input {
+  flex: 1;
+  border: 1px solid var(--wa-bookmark-bar-border);
+  border-radius: 18px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  outline: none;
+  background: #fff;
+  font-family: inherit;
+}
+
+.wa-bookmark-bar__panel-input:focus {
+  border-color: var(--wa-bookmark-bar-accent);
+}
+
+.wa-bookmark-bar__panel-send {
+  background: var(--wa-bookmark-bar-accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: background 120ms ease;
+  padding-left: 2px;
+}
+
+.wa-bookmark-bar__panel-send:hover {
+  background: #008f6f;
+}
+
+.wa-bookmark-bar__panel-send:active {
+  background: #007a5e;
+}
+
+.wa-bookmark-bar__panel-input:disabled,
+.wa-bookmark-bar__panel-send:disabled,
+.wa-bookmark-bar__panel-emoji-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.wa-bookmark-bar__panel-notice {
+  width: 100%;
+  font-size: 11px;
+  color: var(--wa-bookmark-bar-label);
+  line-height: 1.4;
+}
+
+/* Empty / loading state */
+.wa-bookmark-bar__empty {
+  text-align: center;
+  color: var(--wa-bookmark-bar-label);
+  font-size: 12px;
+  padding: 24px 12px;
+  align-self: center;
+}
+
+/* Emoji picker button */
+.wa-bookmark-bar__panel-emoji-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background 120ms ease;
+}
+
+.wa-bookmark-bar__panel-emoji-btn:hover {
+  background: #e4e6eb;
+}
+
+.wa-bookmark-bar__panel-emoji-btn:active {
+  background: #d8dadf;
+}
+
+/* Emoji picker popup */
+.wa-bookmark-bar__emoji-picker {
+  position: absolute;
+  bottom: 46px;
+  right: 8px;
+  width: 240px;
+  max-height: 220px;
+  background: var(--wa-bookmark-bar-panel-bg);
+  border: 1px solid var(--wa-bookmark-bar-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000000;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  /* Ensure the picker is never blurred by the privacy-blur extension. */
+  filter: none !important;
+}
+
+.wa-bookmark-bar__emoji-picker * {
+  filter: none !important;
+}
+
+.wa-bookmark-bar__emoji-picker-header {
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wa-bookmark-bar-text);
+  background: var(--wa-bookmark-bar-panel-alt);
+  border-bottom: 1px solid var(--wa-bookmark-bar-border);
+  flex-shrink: 0;
+}
+
+.wa-bookmark-bar__emoji-picker-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 8px 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.wa-bookmark-bar__emoji-picker-label {
+  font-size: 10px;
+  color: var(--wa-bookmark-bar-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 8px 2px 4px;
+}
+
+.wa-bookmark-bar__emoji-picker-label:first-child {
+  margin-top: 0;
+}
+
+.wa-bookmark-bar__emoji-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+}
+
+.wa-bookmark-bar__emoji-picker-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 80ms ease;
+}
+
+.wa-bookmark-bar__emoji-picker-item:hover {
+  background: var(--wa-bookmark-bar-hover);
+}
+
+.wa-bookmark-bar__emoji-picker-item:active {
+  background: var(--wa-bookmark-bar-active);
+}
+
+/* Shift WhatsApp Web layout down */
+.wa-bookmark-bar-active #app .app-wrapper-web,
+.wa-bookmark-bar-active .app-wrapper-web,
+.wa-bookmark-bar-active #app {
+  margin-top: 32px !important;
+  height: calc(100% - 32px) !important;
+  max-height: calc(100% - 32px) !important;
+}
